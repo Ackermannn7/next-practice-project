@@ -9,13 +9,13 @@ const CreatePrompt = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
-  console.log(post.tag);
 
   // Используем map для добавления # в начало каждой строки
   const tagsWithHash = post.tag
     .split(" ")
+    .filter(Boolean)
     .map((tag) => (tag.includes("#") ? tag : `#${tag}`));
-  console.log(tagsWithHash);
+
   const createPrompt = async (e) => {
     e.preventDefault();
 

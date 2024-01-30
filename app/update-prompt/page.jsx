@@ -12,15 +12,14 @@ const UpdatePrompt = () => {
 
   const [post, setPost] = useState({ prompt: "", tag: [] });
   const [submitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
     const getPromptDetails = async () => {
       const response = await fetch(`/api/prompt/${promptId}`);
       const data = await response.json();
-
+      const existingTags = data.tag.join(" ");
       setPost({
         prompt: data.prompt,
-        tag: data.tag,
+        tag: existingTags,
       });
     };
 
@@ -32,13 +31,16 @@ const UpdatePrompt = () => {
     setIsSubmitting(true);
 
     if (!promptId) return alert("Missing PromptId!");
-
+    const tagsWithHash = post.tag
+      .split(" ")
+      .filter(Boolean)
+      .map((tag) => (tag.includes("#") ? tag : `#${tag}`));
     try {
       const response = await fetch(`/api/prompt/${promptId}`, {
         method: "PATCH",
         body: JSON.stringify({
           prompt: post.prompt,
-          tag: post.tag,
+          tag: tagsWithHash,
         }),
       });
 
