@@ -27,7 +27,9 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", { revalidate: "no-cache" });
+    const response = await fetch("/api/prompt", {
+      next: { revalidate: 5 },
+    });
     const data = await response.json();
 
     setAllPosts(data);
