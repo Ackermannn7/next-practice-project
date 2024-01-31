@@ -28,7 +28,12 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt", {
-      next: { revalidate: 5 },
+      method: "GET", // Explicitly stating the method, though 'GET' is default
+      headers: {
+        "Cache-Control": "no-cache, no-store, must-revalidate", // Directs the browser to fetch a fresh copy
+        Pragma: "no-cache", // For backward compatibility with HTTP/1.0
+        Expires: "0", // Old cache control
+      },
     });
     const data = await response.json();
 
