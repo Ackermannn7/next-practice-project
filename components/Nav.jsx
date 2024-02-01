@@ -4,7 +4,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+
 const Nav = () => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -14,7 +19,12 @@ const Nav = () => {
       const res = await getProviders();
       setProviders(res);
     })();
+    setMounted(true);
   }, []);
+
+  if (!mounted) return null;
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
@@ -27,8 +37,8 @@ const Nav = () => {
         />
         <p className="logo_text">Promptopia</p>
       </Link>
-      {/* Mobile Navigation */}
-      <div className="sm:flex hidden">
+      {/* Desktop Navigation */}
+      <div className="sm:flex hidden gap-4">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
@@ -64,10 +74,64 @@ const Nav = () => {
               ))}
           </>
         )}
+        <div className="flex justify-center">
+          {currentTheme === "dark" ? (
+            <button
+              className="flex items-center justify-center bg-black-700 hover:bg-black rounded-full border-[#FF5722] border-2 w-[37px] h-[37px]"
+              onClick={() => setTheme("light")}
+            >
+              <Image
+                src="/assets/images/sun.svg"
+                alt="logo"
+                height={25}
+                width={25}
+              />
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center bg-gray-100 rounded-full border-[#FF5722] border-2 hover:bg-gray-300 w-[37px] h-[37px]"
+              onClick={() => setTheme("dark")}
+            >
+              <Image
+                src="/assets/images/moon.svg"
+                alt="logo"
+                height={25}
+                width={25}
+              />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div className="sm:hidden flex relative cursor-pointer">
+      <div className="sm:hidden flex gap-4 relative cursor-pointer">
+        <div className="flex justify-center">
+          {currentTheme === "dark" ? (
+            <button
+              className="flex items-center justify-center bg-black-700 hover:bg-black rounded-full border-purple-400 border-2 w-[37px] h-[37px]"
+              onClick={() => setTheme("light")}
+            >
+              <Image
+                src="/assets/images/sun.svg"
+                alt="logo"
+                height={25}
+                width={25}
+              />
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center bg-gray-100 rounded-full border-purple-400 border-2 hover:bg-gray-300 w-[37px] h-[37px]"
+              onClick={() => setTheme("dark")}
+            >
+              <Image
+                src="/assets/images/moon.svg"
+                alt="logo"
+                height={25}
+                width={25}
+              />
+            </button>
+          )}
+        </div>
         {session?.user ? (
           <div className="flex">
             <Image

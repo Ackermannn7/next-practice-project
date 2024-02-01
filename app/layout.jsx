@@ -1,7 +1,6 @@
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
-
 export const metadata = {
   title: "Promptopia",
   description: "Discover & Share AI Prompts",
@@ -9,6 +8,9 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      </head>
       <body>
         <Provider>
           <div className="main">

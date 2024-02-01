@@ -9,7 +9,6 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const router = useRouter();
 
   const [copied, setCopied] = useState("");
-  console.log(post.tag);
 
   const handleCopy = () => {
     setCopied(post.prompt);
@@ -37,7 +36,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             className="rounded-full object-contain"
           />
           <div className="flex flex-col">
-            <h3 className="font-satoshi font-semibold text-gray-900">
+            <h3 className="font-satoshi font-semibold text-gray-900 dark:text-gray-200">
               {post.creator.username}
             </h3>
             <p className="font-inter text-sm text-gray-500">
@@ -59,7 +58,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
         </div>
       </div>
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+      <p className="my-4 font-satoshi text-sm text-gray-700 dark:text-gray-300">
+        {post.prompt}
+      </p>
       <div className="flex gap-2 blue_gradient font-inter text-sm">
         {post.tag.map((tag, index) => (
           <p
