@@ -83,7 +83,7 @@
 }
 
 .green_gradient {
-  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[#68D391] via-[#4C956C] to-[#2F6E4E] bg-clip-text text-transparent;
 }
 
 .blue_gradient {

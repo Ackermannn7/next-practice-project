@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import ToggleThemeButton from "./ToggleThemeButton";
 
 const Nav = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -27,12 +28,16 @@ const Nav = () => {
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
-      <Link href="/" className="flex gap-2 flex-center">
+      <Link href="/" className="flex gap-2 flex-center rounded-full">
         <Image
-          src="/assets/images/logo.svg"
+          src={
+            currentTheme === "dark"
+              ? "/assets/images/logo-dark.svg"
+              : "/assets/images/logo.svg"
+          }
           alt="Promptopia Logo"
-          width={30}
-          height={30}
+          width={37}
+          height={37}
           className="object-contain"
         />
         <p className="logo_text">Promptopia</p>
@@ -74,64 +79,13 @@ const Nav = () => {
               ))}
           </>
         )}
-        <div className="flex justify-center">
-          {currentTheme === "dark" ? (
-            <button
-              className="flex items-center justify-center bg-black-700 hover:bg-black rounded-full border-[#FF5722] border-2 w-[37px] h-[37px]"
-              onClick={() => setTheme("light")}
-            >
-              <Image
-                src="/assets/images/sun.svg"
-                alt="logo"
-                height={25}
-                width={25}
-              />
-            </button>
-          ) : (
-            <button
-              className="flex items-center justify-center bg-gray-100 rounded-full border-[#FF5722] border-2 hover:bg-gray-300 w-[37px] h-[37px]"
-              onClick={() => setTheme("dark")}
-            >
-              <Image
-                src="/assets/images/moon.svg"
-                alt="logo"
-                height={25}
-                width={25}
-              />
-            </button>
-          )}
-        </div>
+        <ToggleThemeButton currentTheme={currentTheme} setTheme={setTheme} />
       </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex gap-4 relative cursor-pointer">
-        <div className="flex justify-center">
-          {currentTheme === "dark" ? (
-            <button
-              className="flex items-center justify-center bg-black-700 hover:bg-black rounded-full border-purple-400 border-2 w-[37px] h-[37px]"
-              onClick={() => setTheme("light")}
-            >
-              <Image
-                src="/assets/images/sun.svg"
-                alt="logo"
-                height={25}
-                width={25}
-              />
-            </button>
-          ) : (
-            <button
-              className="flex items-center justify-center bg-gray-100 rounded-full border-purple-400 border-2 hover:bg-gray-300 w-[37px] h-[37px]"
-              onClick={() => setTheme("dark")}
-            >
-              <Image
-                src="/assets/images/moon.svg"
-                alt="logo"
-                height={25}
-                width={25}
-              />
-            </button>
-          )}
-        </div>
+        <ToggleThemeButton currentTheme={currentTheme} setTheme={setTheme} />
+
         {session?.user ? (
           <div className="flex">
             <Image
