@@ -35,12 +35,12 @@ const Nav = () => {
               ? "/assets/images/logo-dark.svg"
               : "/assets/images/logo.svg"
           }
-          alt="Promptopia Logo"
+          alt="Prompts for All Logo"
           width={37}
           height={37}
           className="object-contain"
         />
-        <p className="logo_text">Promptopia</p>
+        <p className="logo_text">Prompts for All</p>
       </Link>
       {/* Desktop Navigation */}
       <div className="sm:flex hidden gap-4">
