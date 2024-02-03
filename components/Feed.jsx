@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import { useTranslations } from "next-intl";
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -19,15 +19,18 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 const Feed = () => {
-  const [allPosts, setAllPosts] = useState([]);
+  const t = useTranslations("feed");
 
+  const [allPosts, setAllPosts] = useState([]);
   // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt", { cache: "no-store" });
+    const response = await fetch("/api/prompt/", {
+      cache: "no-store",
+    });
     const data = await response.json();
 
     setAllPosts(data);
@@ -66,13 +69,12 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
-
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
         <input
           type="text"
-          placeholder="Search for a tag or a username"
+          placeholder={t("search_label")}
           value={searchText}
           onChange={handleSearchChange}
           required

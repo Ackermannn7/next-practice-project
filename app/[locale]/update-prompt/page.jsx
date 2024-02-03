@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@navigation";
 import Form from "@components/Form";
+import { useTranslations } from "next-intl";
 
 const UpdatePrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
-
+  const t = useTranslations("form");
   const [post, setPost] = useState({ prompt: "", tag: [] });
   const [submitting, setIsSubmitting] = useState(false);
   useEffect(() => {
@@ -56,7 +57,7 @@ const UpdatePrompt = () => {
 
   return (
     <Form
-      type="Edit"
+      type={t("edit_type")}
       post={post}
       setPost={setPost}
       submitting={submitting}

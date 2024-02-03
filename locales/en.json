@@ -1,0 +1,48 @@
+{
+  "homepage": {
+    "title": "Discover & Share",
+    "subtitle": "AI-Powered Prompts",
+    "description": "Prompts for All is an open-source AI prompting tool for modern world to discover, create and share creative prompts"
+  },
+  "feed": {
+    "search_label": "Search for a tag or a username"
+  },
+  "nav": {
+    "create_btn": "Create prompt",
+    "logout_btn": "Sign out",
+    "signin_btn": "Sign in",
+    "profile_btn": "My profile"
+  },
+  "form": {
+    "edit_type": "Edit",
+    "create_type": "Create",
+    "prompt": " prompt",
+    "description": " and share amazing prompts with the world, and let your imagination run wild with any AI-powered platform",
+    "prompt_label": "Your AI Prompt",
+    "prompt_placeholder": "Write your prompt here",
+    "prompt_tag": "Field of Prompt",
+    "tag_examples": "(#product, #webdevelopment, #idea, etc.)",
+    "cancel_btn": "Cancel",
+    "result_btn": "ing..."
+  },
+  "profilepage": {
+    "name": "My profile",
+    "description_1_start": "Welcome to ",
+    "description_my_profile": "your ",
+    "description_1_end": "personalized profile page. ",
+    "description_2_start_my": "Share ",
+    "description_2_start_other": "Explore ",
+    "description_2_end": " exceptional prompts and inspire others with the power of your imagination!"
+  },
+  "other_profilepage": {
+    "description_1_start": "This is ",
+    "description_other_profile": "'s ",
+    "description_1_end": "personalized profile page. ",
+    "description_2_start_other": "Explore ",
+    "description_2_end": " exceptional prompts and inspire others with the power of your imagination!"
+  },
+  "promptcard": {
+    "edit_btn": "Edit",
+    "delete_btn": "Delete"
+  }
+}

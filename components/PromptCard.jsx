@@ -2,8 +2,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@navigation";
+import { useTranslations } from "next-intl";
+
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+  const t = useTranslations("promptcard");
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -81,13 +84,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             className="font-inter text-sm green_gradient cursor-pointer"
             onClick={handleEdit}
           >
-            Edit
+            {t("edit_btn")}
           </p>
           <p
             className="font-inter text-sm orange_gradient cursor-pointer"
             onClick={handleDelete}
           >
-            Delete
+            {t("delete_btn")}
           </p>
         </div>
       )}

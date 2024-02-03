@@ -1,14 +1,23 @@
-import Link from "next/link";
-
+import { Link } from "@navigation";
+import { useLocale, useTranslations } from "next-intl";
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  const locale = useLocale();
+  const t = useTranslations("form");
+  const buttonTranslation = t("create_type");
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
-        <span className="blue_gradient">{type} Post</span>
+        <span className="blue_gradient">
+          {type} {t("prompt")}
+        </span>
       </h1>
       <p className="desc text-left max-w-md">
-        {type} and share amazing prompts with the world, and let your
-        imagination run wild with any AI-powered platform
+        {locale === "ua"
+          ? type === buttonTranslation
+            ? t("create")
+            : t("edit")
+          : type}
+        {t("description")}
       </p>
 
       <form
@@ -17,13 +26,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700 dark:text-gray-200">
-            Your AI Prompt
+            {t("prompt_label")}
           </span>
 
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Write your post here"
+            placeholder={t("prompt_placeholder")}
             required
             className="form_textarea"
           />
@@ -31,16 +40,14 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700 dark:text-gray-200">
-            Field of Prompt{" "}
-            <span className="font-normal">
-              (#product, #webdevelopment, #idea, etc.)
-            </span>
+            {t("prompt_tag")}{" "}
+            <span className="font-normal">{t("tag_examples")}</span>
           </span>
           <input
             value={post.tag}
             onChange={(e) => setPost({ ...post, tag: e.target.value })}
             type="text"
-            placeholder="#Tag"
+            placeholder="#tag"
             required
             className="form_input"
           />
@@ -48,7 +55,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 dark:text-gray-200 text-sm">
-            Cancel
+            {t("cancel_btn")}
           </Link>
 
           <button
@@ -56,7 +63,11 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             disabled={submitting}
             className="px-5 py-1.5 text-sm bg-[#2F6E4E] rounded-full text-white"
           >
-            {submitting ? `${type}ing...` : type}
+            {submitting
+              ? type === buttonTranslation
+                ? t("created_prompt")
+                : t("edited_prompt")
+              : type}
           </button>
         </div>
       </form>

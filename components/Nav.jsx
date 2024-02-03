@@ -1,13 +1,16 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@navigation";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@navigation";
 import { useTheme } from "next-themes";
 import ToggleThemeButton from "./ToggleThemeButton";
+import ToggleLangButton from "./ToggleLangButton";
+import { useTranslations } from "next-intl";
 
 const Nav = () => {
+  const t = useTranslations("nav");
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -47,10 +50,10 @@ const Nav = () => {
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
-              Create Post
+              {t("create_btn")}
             </Link>
             <button type="button" onClick={signOut} className="outline_btn">
-              Sign Out
+              {t("logout_btn")}
             </button>
             <Link href="/profile">
               <Image
@@ -74,16 +77,18 @@ const Nav = () => {
                   }}
                   className="black_btn"
                 >
-                  Sign In
+                  {t("signin_btn")}
                 </button>
               ))}
           </>
         )}
         <ToggleThemeButton currentTheme={currentTheme} setTheme={setTheme} />
+        <ToggleLangButton />
       </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex gap-4 relative cursor-pointer">
+        <ToggleLangButton />
         <ToggleThemeButton currentTheme={currentTheme} setTheme={setTheme} />
 
         {session?.user ? (
@@ -103,14 +108,14 @@ const Nav = () => {
                   className="dropdown-link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  My Profile
+                  {t("profile_btn")}
                 </Link>
                 <Link
                   href="/create-prompt"
                   className="dropdown-link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Prompt
+                  {t("create_btn")}
                 </Link>
                 <button
                   className="mt-5 w-full black_btn"
@@ -121,7 +126,7 @@ const Nav = () => {
                     router.push("/");
                   }}
                 >
-                  Sign Out
+                  {t("logout_btn")}
                 </button>
               </div>
             )}
@@ -138,7 +143,7 @@ const Nav = () => {
                   }}
                   className="black_btn"
                 >
-                  Sign In
+                  {t("signin_btn")}
                 </button>
               ))}
           </>

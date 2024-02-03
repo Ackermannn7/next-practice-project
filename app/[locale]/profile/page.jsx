@@ -2,11 +2,13 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@navigation";
 
 import Profile from "@components/Profile";
+import { useTranslations } from "next-intl";
 
 const MyProfile = () => {
+  const t = useTranslations("profilepage");
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -49,8 +51,14 @@ const MyProfile = () => {
 
   return (
     <Profile
-      name="My"
-      desc="Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination"
+      name={t("name")}
+      desc={
+        t("description_1_start") +
+        t("description_my_profile") +
+        t("description_1_end") +
+        t("description_2_start_my") +
+        t("description_2_end")
+      }
       data={myPosts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

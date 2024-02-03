@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@navigation";
 import Form from "@components/Form";
+import { useTranslations } from "next-intl";
 const CreatePrompt = () => {
+  const t = useTranslations("form");
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -40,7 +42,7 @@ const CreatePrompt = () => {
   };
   return (
     <Form
-      type="Create"
+      type={t("create_type")}
       post={post}
       setPost={setPost}
       submitting={submitting}

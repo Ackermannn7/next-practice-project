@@ -1,0 +1,51 @@
+{
+  "homepage": {
+    "title": "Discover & Share",
+    "subtitle": "Підказки на основі AI",
+    "description": "Prompts for All — це інструмент підказок штучного інтелекту з відкритим кодом для сучасного світу, щоб знаходити, створювати та ділитися творчими підказками"
+  },
+  "feed": {
+    "search_label": "Введіть тег або нікнейм"
+  },
+  "nav": {
+    "create_btn": "Створити запит",
+    "logout_btn": "Вийти",
+    "signin_btn": "Увійти",
+    "profile_btn": "Мій профіль"
+  },
+  "form": {
+    "edit_type": "Редагувати",
+    "edit": "Редагуйте",
+    "edited_prompt": "Редагування...",
+    "create_type": "Створити",
+    "create": "Створіть",
+    "created_prompt": "Створення...",
+    "prompt": " запит",
+    "description": " та поділіться дивовижними ідеями зі світом, і дайте своєму власному уявленню розцвітати на будь-якій платформі зі штучним інтелектом",
+    "prompt_label": "Ваш запит з ШІ",
+    "prompt_placeholder": "Напишіть ваш запит тут",
+    "prompt_tag": "Поле запиту",
+    "tag_examples": "(#продукт, #веброзробка, #ідея і т.д.)",
+    "cancel_btn": "Скасувати"
+  },
+  "profilepage": {
+    "name": "Мій профіль",
+    "description_1_start": "Ласкаво просимо до ",
+    "description_my_profile": "вашої",
+    "description_other_profile": " профілю",
+    "description_1_end": " персональної сторінки. ",
+    "description_2_start_my": "Поділіться ",
+    "description_2_start_other": "Досліджуйте ",
+    "description_2_end": " своїми унікальними запитами та надихайте інших силою своєї уяви!"
+  },
+  "other_profilepage": {
+    "description_1_start": "Це профіль користувача ",
+    "description_1_end": "",
+    "description_2_start_other": "Досліджуйте ",
+    "description_2_end": " його/її унікальні запити та надихайте інших силою своєї уяви!"
+  },
+  "promptcard": {
+    "edit_btn": "Редагувати",
+    "delete_btn": "Видалити"
+  }
+}
